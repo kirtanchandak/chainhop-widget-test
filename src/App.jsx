@@ -1,96 +1,44 @@
-import { SwapSDK } from "@chainflip/sdk/swap";
-import { IoMdInformationCircleOutline } from "react-icons/io";
-import bitcoin from "./assets/coins/bitvoin.png";
-import eth from "./assets/coins/eth.png";
-import { useState } from "react";
+import Navbar from "./components/Navbar";
 
 function App() {
-  const sdk = new SwapSDK({ network: "perseverance" });
-  const [destAddress, setDestAddress] = useState("");
-  const [amount, setAmount] = useState("");
-
-  const qouteArgs = {
-    srcAsset: "BTC",
-    srcChain: "Bitcoin",
-    destAsset: "ETH",
-    destChain: "Ethereum",
-    destAddress: "0x1234",
-    amount: (amount * 1e8).toString(),
-  };
-
-  const quote = async () => {
-    const ch = await sdk.getQuote(qouteArgs);
-    console.log(ch);
-  };
-
-  const channel = async () => {
-    try {
-      const ck = await sdk.requestDepositAddress({
-        ...qouteArgs,
-        destAddress: destAddress,
-        maxBoostFeeBps: 30,
-      });
-      alert(ck.depositAddress);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // const channelId = "1755479-Bitcoin-178";
-
-  // const status = async () => {
-  //   const st = await sdk.getStatus({ id: channelId });
-  //   console.log(st);
-  // };
-
   return (
-    <>
-      <div className="flex justify-center items-center mt-10">
-        <div className="bg-gray-800 text-white w-[500px] p-4 rounded-md">
-          <div className="flex justify-between">
-            <p className="text-xl font-bold">Swap</p>
-            <IoMdInformationCircleOutline size={20} className="mt-[1px]" />
+    <div className="relative min-h-screen">
+      <Navbar />
+      <div className="relative z-10 flex items-center justify-center text-white min-h-[calc(100vh-80px)]">
+        <div className="px-44">
+          <div>
+            <h1 className="text-[45px] leading-[52px] font-bold">
+              Empowering Lives Through <br /> Innovative AI Technologies.
+            </h1>
+            <p className="mt-2 text-white text-lg">
+              Finding new horizons for visionaries to accelerate their
+              innovation and progress.
+            </p>
+          </div>
+          <div className="mt-4 flex gap-4">
+            <button className="bg-[#6A35FF] rounded-lg py-2 px-6 font-bold">
+              Explore Our Services
+            </button>
+            <button className="border-[#6A35FF] border rounded-lg py-2 px-4 font-bold">
+              Learn more
+            </button>
           </div>
           <div>
-            <div className="mt-5 p-3 flex justify-between border border-gray-300 rounded-md">
-              <div className="flex flex-col">
-                <label htmlFor="">Deposit</label>
-                <input
-                  type="text"
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="text-black mt-2 rounded-md"
-                />
-              </div>
-              <div className="flex gap-2">
-                <img src={bitcoin} alt="btc" className="w-8 object-contain" />
-                <p className="mt-4">BTC</p>
-              </div>
-            </div>
-            <div className="mt-5 p-3 flex justify-between border border-gray-300 rounded-md">
-              <div className="flex flex-col">
-                <label htmlFor="">Recieve</label>
-                <input type="text" className="mt-2 rounded-md" />
-              </div>
-              <div className="flex gap-2">
-                <img src={eth} alt="btc" className="w-8 object-contain" />
-                <p className="mt-4">ETH</p>
-              </div>
-            </div>
-            <div className="flex gap-2 mt-8">
-              <label htmlFor="">Destination address</label>
-              <input
-                type="text"
-                className=" rounded-md text-black"
-                onChange={(e) => setDestAddress(e.target.value)}
-              />
-            </div>
-            <button className="mt-8 bg-yellow-300 p-2" onClick={channel}>
-              Done
-            </button>
+            <p className="mt-16 text-[18px] font-medium">
+              <span className="text-gradient-1">
+                From Ideas to Software Solutions
+              </span>{" "}
+              💡✨
+              <span className="text-[#D1D1D1]">
+                From Ideas to Software Solutions
+              </span>{" "}
+              🌟✨
+              <span className="text-gradient-2">From Ideas to</span>
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
